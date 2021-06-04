@@ -20,7 +20,11 @@ npm start
 ## Known issues :bug:
 - The map tooltip does not disappear when the date is changed.
 - The guiding lines in the pie chart sometimes overlap in the bottom part of the chart.
-- Tooltips are not styled and do not match the design concept. 
+- Tooltips are not styled and do not match the design concept.
+- Dynamically change position in the Leaflet map is tricky and requires more thorough thinking through of application architecture.
+
+## Possible improvements
+
 
 ## License
 
