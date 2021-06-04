@@ -23,8 +23,10 @@ npm start
 - Tooltips are not styled and do not match the design concept.
 - Dynamically change position in the Leaflet map is tricky and requires more thorough thinking through of application architecture.
 
-## Possible improvements
-
+## Possible improvements :hammer_and_wrench:
+- Fetch all forces with corresponding dates and allow the user to choose date and force.
+- When the user selects the force, the map automatically jumps to this place.
+- Add a pie chart to find out how crime types connected to the outcome type. 
 
 ## License
 
