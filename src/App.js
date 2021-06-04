@@ -18,6 +18,7 @@ import Alert from "@material-ui/lab/Alert";
 
 function App() {
   const [isMapDataLoading, setIsMapDataLoading] = useState(true);
+  const [isDatesLoading, setIsDatesLoading] = useState(true);
   const [isChartDataLoading, setIsChartDataLoading] = useState(null);
   const [datesFetchingError, setDatesFetchingError] = useState(null);
   const [mapFetchingError, setMapFetchingError] = useState(null);
@@ -58,11 +59,14 @@ function App() {
 
   useEffect(() => {
     if (date != null) {
+      setIsDatesLoading(true);
       axios.get(getStopForceUrl(force, date)).then(
         (response) => {
           setMapFetchingError(null);
           setCrimes(response.data);
+
           setIsMapDataLoading(false);
+          setIsDatesLoading(false);
         },
         (error) => {
           setMapFetchingError(`Map crimes fetching (${error})`);
@@ -152,6 +156,7 @@ function App() {
                   autoOk={true}
                   inputProps={{ style: { textAlign: "center" } }}
                 />
+                {isDatesLoading && <CircularProgress />}
               </Grid>
             </Grid>
           </Grid>
