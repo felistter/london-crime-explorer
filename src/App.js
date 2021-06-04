@@ -110,79 +110,84 @@ function App() {
   };
 
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Grid container direction="column" alignItems="center">
-        {datesFetchingError && (
-          <Alert severity="error">{datesFetchingError}</Alert>
-        )}
-        {mapFetchingError && <Alert severity="error">{mapFetchingError}</Alert>}
-        {crimesFetchingError && (
-          <Alert severity="error">{crimesFetchingError}</Alert>
-        )}
-        {crimesAtLocationFetchingError && (
-          <Alert severity="error">{crimesAtLocationFetchingError}</Alert>
-        )}
-        <Grid item>
-          <Grid
-            container
-            direction="row"
-            justify="flex-start"
-            alignItems="center"
-          >
-            <Grid item xs={12}>
-              <DatePicker
-                views={["year", "month"]}
-                helperText={
-                  <Typography
-                    variant="caption"
-                    style={{ textAlign: "center" }}
-                    display="block"
-                  >
-                    Select year and month of crimes
-                  </Typography>
-                }
-                minDate={minDate}
-                maxDate={maxDate}
-                value={date}
-                onChange={handleChangeDate}
-                autoOk={true}
-                inputProps={{ style: { textAlign: "center" } }}
-              />
+    <>
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <Grid container direction="column" alignItems="center">
+          {datesFetchingError && (
+            <Alert severity="error">{datesFetchingError}</Alert>
+          )}
+          {mapFetchingError && (
+            <Alert severity="error">{mapFetchingError}</Alert>
+          )}
+          {crimesFetchingError && (
+            <Alert severity="error">{crimesFetchingError}</Alert>
+          )}
+          {crimesAtLocationFetchingError && (
+            <Alert severity="error">{crimesAtLocationFetchingError}</Alert>
+          )}
+          <Typography variant="h4">London Crime Explorer</Typography>
+          <Grid item>
+            <Grid
+              container
+              direction="row"
+              justify="flex-start"
+              alignItems="center"
+            >
+              <Grid item xs={12}>
+                <DatePicker
+                  views={["year", "month"]}
+                  helperText={
+                    <Typography
+                      variant="caption"
+                      style={{ textAlign: "center" }}
+                      display="block"
+                    >
+                      Year and Month
+                    </Typography>
+                  }
+                  minDate={minDate}
+                  maxDate={maxDate}
+                  value={date}
+                  onChange={handleChangeDate}
+                  autoOk={true}
+                  inputProps={{ style: { textAlign: "center" } }}
+                />
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
 
-        <Grid item>
-          {isMapDataLoading ? (
-            <CircularProgress />
-          ) : (
-            <CriminalMap
-              center={center}
-              zoom={zoom}
-              stype={{ height: "500px", width: "600px" }}
-              crimes={crimes}
-              onMarkerClick={getCrimesAtLocation}
-            />
-          )}
-        </Grid>
-        <Grid item xs={12}>
-          {isChartDataLoading != null && isChartDataLoading ? (
-            <CircularProgress style={{ marginTop: "130px" }} />
-          ) : (
-            selectedCrimeCounts && (
-              <PieChart
-                data={selectedCrimeCounts}
-                categories={crimeCategories}
-                width={700}
-                height={300}
-                innerRadius={60}
-                outerRadius={100}
+          <Grid item>
+            {isMapDataLoading ? (
+              <CircularProgress />
+            ) : (
+              <CriminalMap
+                center={center}
+                zoom={zoom}
+                stype={{ height: "500px", width: "600px" }}
+                crimes={crimes}
+                onMarkerClick={getCrimesAtLocation}
               />
-            )
-          )}
+            )}
+          </Grid>
+          <Grid item xs={12}>
+            {isChartDataLoading != null && isChartDataLoading ? (
+              <CircularProgress style={{ marginTop: "130px" }} />
+            ) : (
+              selectedCrimeCounts && (
+                <PieChart
+                  data={selectedCrimeCounts}
+                  categories={crimeCategories}
+                  width={700}
+                  height={300}
+                  innerRadius={60}
+                  outerRadius={100}
+                />
+              )
+            )}
+          </Grid>
         </Grid>
-      </Grid>
-    </MuiPickersUtilsProvider>
+      </MuiPickersUtilsProvider>
+    </>
   );
 }
 
