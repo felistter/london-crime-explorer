@@ -55,7 +55,7 @@ const PieChart = (props) => {
       .attr("height", 40)
       .attr("transform", "translate(-" + 0 + "," + -15 + ")")
       .style("text-anchor", "middle")
-      .style("font-size", 20)
+      .style("font-size", "20px")
       .text("Total crimes");
 
     svg
@@ -64,7 +64,7 @@ const PieChart = (props) => {
       .attr("height", 40)
       .attr("transform", "translate(-" + 0 + "," + 15 + ")")
       .style("text-anchor", "middle")
-      .style("font-size", 24)
+      .style("font-size", "24px")
       .text(totalCrimes.toString());
 
     svg
@@ -100,7 +100,7 @@ const PieChart = (props) => {
       .data(data)
       .enter()
       .append("text")
-      .style("font-size", 12)
+      .style("font-size", "12px")
       .text(
         (d) =>
           `${props.categories[d.data.name]} ${percFormat(
